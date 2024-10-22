@@ -43,10 +43,7 @@ export async function generateToken() {
 export async function generatePix(pixGenerationData: PixGenerationData) {
   const { access_token } = await generateToken();
 
-  console.log("🚀 ~ generatePix ~ access_token:", access_token)
-
   try {
-    console.log("🚀 ~ generatePix ~ pixGenerationResponse:", )
 
     const response = await fetch(
       'https://api-stg.primepag.com.br/v1/pix/qrcodes', 
@@ -65,7 +62,6 @@ export async function generatePix(pixGenerationData: PixGenerationData) {
     );    
 
     const pixData: PixGenerationResponse = await response.json();
-    console.log("🚀 ~ generatePix ~ pixData:", pixData)
 
     return {
       status: "success",
@@ -73,8 +69,6 @@ export async function generatePix(pixGenerationData: PixGenerationData) {
       data: pixData
     };
   } catch (e) {
-    console.error("🚀 ~ generatePix ~ e:",)
-
     return {
       status: "error",
       message: `Error: ${e}`,
